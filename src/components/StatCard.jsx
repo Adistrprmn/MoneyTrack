@@ -15,7 +15,7 @@ export default function StatCard({ label, amount, tone = 'neutral', icon: Icon }
 
   const formattedAmount = formatIDR(amount)
 
-  // Mengecilkan font berdasarkan panjang nominal
+  // Ukuran nominal otomatis menyesuaikan panjang angka
   const amountSize =
     formattedAmount.length >= 17
       ? 'text-lg sm:text-xl'
@@ -24,8 +24,9 @@ export default function StatCard({ label, amount, tone = 'neutral', icon: Icon }
         : 'text-2xl sm:text-3xl'
 
   return (
-    <div className="card p-5 flex items-start justify-between gap-3 min-w-0">
-      <div className="min-w-0 flex-1">
+    <div className="card p-5 relative min-w-0">
+      {/* Isi card */}
+      <div className="pr-2">
         <p className="text-xs font-semibold uppercase tracking-wide text-ink-soft mb-2">
           {label}
         </p>
@@ -41,16 +42,22 @@ export default function StatCard({ label, amount, tone = 'neutral', icon: Icon }
         </p>
       </div>
 
+      {/* Icon pojok kanan atas */}
       {Icon && (
         <div
           className={`
-            h-10 w-10 shrink-0
+            absolute top-3 right-3
+            h-8 w-8
+            shrink-0
             rounded-full
             flex items-center justify-center
             ${iconBg}
           `}
         >
-          <Icon className="h-5 w-5" strokeWidth={2} />
+          <Icon
+            className="h-4 w-4"
+            strokeWidth={2}
+          />
         </div>
       )}
     </div>
