@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* =========================================================
+   LIGHT MODE
+   ========================================================= */
+
+:root {
+  --color-paper: 244 246 244;
+  --color-paper-card: 255 255 255;
+  --color-paper-line: 225 231 226;
+
+  --color-ink: 22 33 29;
+  --color-ink-soft: 63 78 72;
+
+  --color-forest-50: 234 241 238;
+  --color-forest-100: 203 220 211;
+  --color-forest-300: 110 156 135;
+  --color-forest-500: 31 58 52;
+  --color-forest-600: 24 46 41;
+  --color-forest-700: 18 34 30;
+
+  --color-gain: 47 158 110;
+  --color-gain-soft: 228 245 236;
+
+  --color-loss: 192 72 63;
+  --color-loss-soft: 251 234 232;
+
+  --color-gold: 201 162 75;
+
+  color-scheme: light;
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+.dark {
+  --color-paper: 15 25 21;
+  --color-paper-card: 25 36 31;
+  --color-paper-line: 48 63 56;
+
+  --color-ink: 235 242 238;
+  --color-ink-soft: 170 187 179;
+
+  --color-forest-50: 29 49 42;
+  --color-forest-100: 51 76 66;
+  --color-forest-300: 110 156 135;
+
+  /* Hijau utama dibuat tetap terlihat di dark mode */
+  --color-forest-500: 64 126 103;
+  --color-forest-600: 52 108 88;
+  --color-forest-700: 40 88 72;
+
+  --color-gain: 72 190 135;
+  --color-gain-soft: 29 65 49;
+
+  --color-loss: 224 103 94;
+  --color-loss-soft: 69 38 38;
+
+  --color-gold: 215 177 76;
+
+  color-scheme: dark;
+}
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+html {
+  min-height: 100%;
+  background: rgb(var(--color-paper));
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+
+  background: rgb(var(--color-paper));
+  color: rgb(var(--color-ink));
+
+  font-family: 'Inter', system-ui, sans-serif;
+
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgb(var(--color-ink));
+}
+
+p {
+  color: rgb(var(--color-ink));
+}
+
+
+/* =========================================================
+   CUSTOM COMPONENTS
+   ========================================================= */
+
+@layer components {
+  .card {
+    @apply rounded-xl2 border border-paper-line bg-paper-card shadow-card;
+  }
+
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+
+  .input {
+    @apply w-full rounded-lg border border-paper-line bg-paper-card px-3.5 py-2.5 text-sm text-ink outline-none transition;
+  }
+
+  .input::placeholder {
+    @apply text-ink-soft/50;
+  }
+
+  .input:focus {
+    @apply border-forest-500 ring-2 ring-forest-500/10;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center whitespace-nowrap rounded-lg bg-forest-500 px-4 py-2.5 text-sm font-semibold text-white transition;
+  }
+
+  .btn-primary:hover {
+    @apply bg-forest-600;
+  }
+
+  .btn-primary:disabled {
+    @apply cursor-not-allowed opacity-60;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center whitespace-nowrap rounded-lg border border-paper-line bg-paper-card px-4 py-2.5 text-sm font-semibold text-ink transition;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-paper;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center whitespace-nowrap rounded-lg bg-loss px-4 py-2.5 text-sm font-semibold text-white transition;
+  }
+
+  .btn-danger:hover {
+    @apply opacity-90;
+  }
+
+  button,
+  a {
+    white-space: nowrap;
+  }
+}
+
+
+/* =========================================================
+   DARK MODE - COMPONENTS
+   ========================================================= */
+
+.dark .card {
+  background: rgb(var(--color-paper-card));
+  border-color: rgb(var(--color-paper-line));
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.25),
+    0 8px 24px -12px rgba(0, 0, 0, 0.45);
+}
+
+.dark .input {
+  background: rgb(20 31 27);
+  color: rgb(var(--color-ink));
+  border-color: rgb(var(--color-paper-line));
+}
+
+.dark .input::placeholder {
+  color: rgb(140 158 149);
+}
+
+.dark .input:hover {
+  border-color: rgb(var(--color-forest-300));
+}
+
+.dark .input:focus {
+  border-color: rgb(var(--color-forest-300));
+}
+
+
+/* =========================================================
+   DARK MODE - WHITE TAILWIND ELEMENTS
+   ========================================================= */
+
+/*
+  Beberapa komponen lama menggunakan bg-white / border-white.
+  Kita override supaya tidak menyala putih ketika dark mode.
+*/
+
+.dark .bg-white {
+  background-color: rgb(var(--color-paper-card));
+}
+
+.dark .border-white {
+  border-color: rgb(var(--color-paper-line));
+}
+
+.dark .text-black {
+  color: rgb(var(--color-ink));
+}
+
+
+/* =========================================================
+   DARK MODE - BUTTON
+   ========================================================= */
+
+.dark .btn-primary {
+  background: rgb(var(--color-forest-500));
+  color: white;
+}
+
+.dark .btn-primary:hover {
+  background: rgb(var(--color-forest-600));
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-paper));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-paper-line));
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-forest-300));
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background: rgb(var(--color-gold) / 0.3);
+  color: rgb(var(--color-ink));
+}
+
+
+/* =========================================================
+   THEME TRANSITION
+   ========================================================= */
+
+html,
+body,
+#root,
+.card,
+.input,
+button,
+header,
+aside,
+nav {
+  transition:
+    background-color 300ms ease,
+    border-color 300ms ease,
+    color 300ms ease;
+}
