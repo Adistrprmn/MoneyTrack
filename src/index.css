@@ -312,22 +312,40 @@ nav {
     color 300ms ease;
 }
 
+/* =================================
+   MoneyTrack Logo Loop Animation
+================================= */
+
 .logo-letter {
   display: inline-block;
   opacity: 0;
-  transform: translateX(-5px);
-  animation: logoLetterIn 0.35s ease-out forwards;
+  animation: logoLetterLoop 3s infinite;
 }
 
-@keyframes logoLetterIn {
-  from {
+@keyframes logoLetterLoop {
+  0% {
     opacity: 0;
     transform: translateX(-5px);
   }
 
-  to {
+  8% {
     opacity: 1;
     transform: translateX(0);
+  }
+
+  65% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  78% {
+    opacity: 0;
+    transform: translateX(5px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(5px);
   }
 }
 
