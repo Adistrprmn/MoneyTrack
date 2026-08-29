@@ -193,7 +193,6 @@ p {
   }
 }
 
-
 /* =========================================================
    DARK MODE - COMPONENTS
    ========================================================= */
@@ -311,4 +310,31 @@ nav {
     background-color 300ms ease,
     border-color 300ms ease,
     color 300ms ease;
+}
+
+.logo-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-5px);
+  animation: logoLetterIn 0.35s ease-out forwards;
+}
+
+@keyframes logoLetterIn {
+  from {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-letter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
