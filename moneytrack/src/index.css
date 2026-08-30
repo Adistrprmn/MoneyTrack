@@ -150,3 +150,33 @@ code {
     transform: none;
   }
 }
+
+/* =================================
+   MoneyTrack Glow Animation
+================================= */
+
+.moneytrack-glow {
+  animation: moneytrackGlow 2.8s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+@keyframes moneytrackGlow {
+  0%,
+  100% {
+    opacity: 0.82;
+    filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+  }
+
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.45));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moneytrack-glow {
+    animation: none;
+    opacity: 1;
+    filter: none;
+  }
+}
