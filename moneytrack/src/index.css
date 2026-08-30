@@ -109,60 +109,42 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
-/* ================================
-   MoneyTrack Logo Animation
-================================ */
 
 .logo-letter {
   display: inline-block;
   opacity: 0;
-  transform: translateY(8px);
-  animation: logoLetterIn 0.45s ease-out forwards;
+  animation: logoLetterLoop 3s infinite;
 }
 
-@keyframes logoLetterIn {
+@keyframes logoLetterLoop {
   0% {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateX(-5px);
   }
 
-  60% {
+  8% {
     opacity: 1;
-    transform: translateY(-2px);
+    transform: translateX(0);
+  }
+
+  65% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  78% {
+    opacity: 0;
+    transform: translateX(5px);
   }
 
   100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Icon muncul sedikit setelah teks mulai */
-.animate-logo-icon {
-  animation: logoIconIn 0.6s ease-out forwards;
-}
-
-@keyframes logoIconIn {
-  0% {
     opacity: 0;
-    transform: scale(0.7) rotate(-15deg);
-  }
-
-  70% {
-    opacity: 1;
-    transform: scale(1.08) rotate(3deg);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0);
+    transform: translateX(5px);
   }
 }
 
-/* Untuk pengguna yang mengaktifkan reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .logo-letter,
-  .animate-logo-icon {
+  .logo-letter {
     animation: none;
     opacity: 1;
     transform: none;

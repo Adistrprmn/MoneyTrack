@@ -219,14 +219,13 @@ export default function Dashboard() {
         </div>
 
         <div className="flex items-center gap-3">
-  <button
-    type="button"
-    className="btn-danger px-5 py-2.5"
-    onClick={() => setModalType('expense')}
-  >
-    <span className="mr-1">+</span>
-    Pengeluaran
-  </button>
+<button
+  type="button"
+  className="btn-danger px-5 py-2.5"
+  onClick={() => setModalOpen(true)}
+>
+  + Tambah Pengeluaran
+</button>
 
   <button
     type="button"
