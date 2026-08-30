@@ -43,22 +43,25 @@ export default function AppShell({ children }) {
   return (
     <div className="min-h-screen bg-paper dark:bg-[#0F1715] transition-colors duration-300 lg:flex">
 
-      {/* ========================================
+      {/* ================================
           DESKTOP / TABLET SIDEBAR
-      ======================================== */}
+      ================================= */}
+
       <aside className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0 border-r border-paper-line dark:border-white/10 bg-forest-500 dark:bg-[#121E1B] text-white transition-colors duration-300">
 
         {/* LOGO */}
         <div className="flex items-center px-6 py-6">
-          <div className="moneytrack-glow flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5 animate-pulse">
+
             <Coins
-              className="h-6 w-6 text-gold"
+              className="h-6 w-6 text-gold drop-shadow-[0_0_7px_rgba(242,196,80,0.8)]"
               strokeWidth={2}
             />
 
             <span className="font-display text-xl font-semibold tracking-tight">
               MoneyTrack
             </span>
+
           </div>
         </div>
 
@@ -133,27 +136,31 @@ export default function AppShell({ children }) {
 
             Keluar
           </button>
+
         </div>
       </aside>
 
-      {/* ========================================
+      {/* ================================
           MAIN COLUMN
-      ======================================== */}
+      ================================= */}
+
       <div className="flex-1 lg:ml-64 flex flex-col min-h-screen">
 
         {/* MOBILE TOP BAR */}
         <header className="lg:hidden sticky top-0 z-20 flex items-center justify-between border-b border-paper-line dark:border-white/10 bg-paper/90 dark:bg-[#0F1715]/90 backdrop-blur px-4 py-3.5">
 
           {/* MOBILE LOGO */}
-          <div className="moneytrack-glow flex items-center gap-2">
+          <div className="flex items-center gap-2 animate-pulse">
+
             <Coins
-              className="h-5 w-5 text-forest-500 dark:text-gold"
+              className="h-5 w-5 text-forest-500 dark:text-gold drop-shadow-[0_0_7px_rgba(242,196,80,0.8)]"
               strokeWidth={2}
             />
 
             <span className="font-display text-lg font-semibold dark:text-white">
               MoneyTrack
             </span>
+
           </div>
 
           <div className="flex items-center gap-2">
@@ -188,6 +195,7 @@ export default function AppShell({ children }) {
                 strokeWidth={2}
               />
             </NavLink>
+
           </div>
         </header>
 
@@ -196,10 +204,12 @@ export default function AppShell({ children }) {
           {children}
         </main>
 
-        {/* ========================================
+        {/* ================================
             MOBILE BOTTOM NAVIGATION
-        ======================================== */}
+        ================================= */}
+
         <nav className="lg:hidden fixed bottom-0 inset-x-0 z-20 bg-white dark:bg-[#121E1B] border-t border-paper-line dark:border-white/10 pb-[env(safe-area-inset-bottom)]">
+
           <div className="grid grid-cols-5">
 
             {MOBILE_NAV_ITEMS.map(({ to, label, icon: Icon }) => (
@@ -222,8 +232,10 @@ export default function AppShell({ children }) {
                 {label}
               </NavLink>
             ))}
+
           </div>
         </nav>
+
       </div>
     </div>
   )
