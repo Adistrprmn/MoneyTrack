@@ -10,9 +10,9 @@
 ========================================================= */
 
 :root {
-  --color-paper: 244 246 244;
+  --color-paper: 242 245 243;
   --color-paper-card: 255 255 255;
-  --color-paper-line: 225 231 226;
+  --color-paper-line: 216 225 219;
 
   --color-ink: 22 33 29;
   --color-ink-soft: 63 78 72;
@@ -51,7 +51,6 @@
   --color-forest-50: 29 49 42;
   --color-forest-100: 51 76 66;
   --color-forest-300: 110 156 135;
-
   --color-forest-500: 64 126 103;
   --color-forest-600: 52 108 88;
   --color-forest-700: 40 88 72;
@@ -146,15 +145,31 @@ p {
 
 @layer components {
 
+  /* =======================================================
+     CARD
+  ======================================================= */
+
   .card {
     @apply rounded-xl2 border border-paper-line bg-paper-card shadow-card;
+
+    box-shadow:
+      0 1px 2px rgba(22, 33, 29, 0.04),
+      0 6px 18px rgba(22, 33, 29, 0.045);
   }
 
+
+  /* =======================================================
+     LABEL
+  ======================================================= */
 
   .label {
     @apply mb-1.5 block text-sm font-medium text-ink;
   }
 
+
+  /* =======================================================
+     INPUT
+  ======================================================= */
 
   .input {
     @apply w-full rounded-lg border border-paper-line bg-paper-card px-3.5 py-2.5 text-sm text-ink outline-none transition;
@@ -171,6 +186,10 @@ p {
   }
 
 
+  /* =======================================================
+     PRIMARY BUTTON
+  ======================================================= */
+
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-forest-500 px-4 py-2.5 text-sm font-semibold text-white transition;
   }
@@ -186,6 +205,10 @@ p {
   }
 
 
+  /* =======================================================
+     SECONDARY BUTTON
+  ======================================================= */
+
   .btn-secondary {
     @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-paper-line bg-paper-card px-4 py-2.5 text-sm font-semibold text-ink transition;
   }
@@ -195,6 +218,10 @@ p {
     @apply bg-paper;
   }
 
+
+  /* =======================================================
+     DANGER BUTTON
+  ======================================================= */
 
   .btn-danger {
     @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-loss px-4 py-2.5 text-sm font-semibold text-white transition;
@@ -206,10 +233,23 @@ p {
   }
 
 
+  .btn-danger:disabled {
+    @apply cursor-not-allowed opacity-60;
+  }
+
+
+  /* =======================================================
+     GHOST BUTTON
+  ======================================================= */
+
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg px-3 py-2.5 text-sm font-semibold text-ink;
   }
 
+
+  /* =======================================================
+     LINKS / BUTTON TEXT
+  ======================================================= */
 
   button,
   a {
@@ -219,11 +259,36 @@ p {
 
 
 /* =========================================================
+   LIGHT MODE - CARD DEPTH
+========================================================= */
+
+:root .card {
+  background: rgb(255 255 255);
+
+  border-color: rgb(216 225 219);
+
+  box-shadow:
+    0 1px 2px rgba(22, 33, 29, 0.04),
+    0 6px 18px rgba(22, 33, 29, 0.045);
+}
+
+
+:root .card:hover {
+  border-color: rgb(205 216 209);
+
+  box-shadow:
+    0 2px 4px rgba(22, 33, 29, 0.05),
+    0 10px 28px rgba(22, 33, 29, 0.07);
+}
+
+
+/* =========================================================
    DARK MODE - COMPONENTS
 ========================================================= */
 
 .dark .card {
   background: rgb(var(--color-paper-card));
+
   border-color: rgb(var(--color-paper-line));
 
   box-shadow:
@@ -232,9 +297,24 @@ p {
 }
 
 
+.dark .card:hover {
+  border-color: rgb(var(--color-forest-300));
+
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.28),
+    0 10px 28px -12px rgba(0, 0, 0, 0.50);
+}
+
+
+/* =========================================================
+   DARK MODE - INPUT
+========================================================= */
+
 .dark .input {
   background: rgb(20 31 27);
+
   color: rgb(var(--color-ink));
+
   border-color: rgb(var(--color-paper-line));
 }
 
@@ -279,6 +359,7 @@ p {
 
 .dark .btn-primary {
   background: rgb(var(--color-forest-500));
+
   color: white;
 }
 
@@ -305,6 +386,7 @@ p {
 
 ::-webkit-scrollbar-thumb {
   background: rgb(var(--color-paper-line));
+
   border-radius: 999px;
 }
 
@@ -320,6 +402,7 @@ p {
 
 ::selection {
   background: rgb(var(--color-gold) / 0.3);
+
   color: rgb(var(--color-ink));
 }
 
@@ -340,7 +423,8 @@ nav {
   transition:
     background-color 300ms ease,
     border-color 300ms ease,
-    color 300ms ease;
+    color 300ms ease,
+    box-shadow 300ms ease;
 }
 
 
@@ -362,49 +446,54 @@ nav {
 
   0% {
     opacity: 0;
-    transform: translateX(-5px);
+
+    transform:
+      translateX(-5px);
   }
 
   8% {
     opacity: 1;
-    transform: translateX(0);
+
+    transform:
+      translateX(0);
   }
 
   65% {
     opacity: 1;
-    transform: translateX(0);
+
+    transform:
+      translateX(0);
   }
 
   78% {
     opacity: 0;
-    transform: translateX(5px);
+
+    transform:
+      translateX(5px);
   }
 
   100% {
     opacity: 0;
-    transform: translateX(5px);
-  }
 
+    transform:
+      translateX(5px);
+  }
 }
 
 
 /* =========================================================
-   FLOATING MONEY - LANDING PAGE
+   LANDING PAGE
 ========================================================= */
 
 .landing-page {
   position: relative;
 
-  /*
-    Supaya halaman tidak menghasilkan
-    horizontal scrollbar gara-gara animasi.
-  */
   overflow-x: hidden;
 }
 
 
 /* =========================================================
-   FLOATING MONEY CONTAINER
+   LANDING - FLOATING MONEY CONTAINER
 ========================================================= */
 
 .money-float-container {
@@ -416,256 +505,217 @@ nav {
 
   pointer-events: none;
 
-  /*
-    Di belakang tulisan/card,
-    tetapi tetap terlihat di background.
-  */
   z-index: 0;
 }
 
 
 /* =========================================================
-   MONEY
+   LANDING - FLOATING MONEY
 ========================================================= */
 
 .money-float {
   position: absolute;
 
-  /*
-    Mulai dari bawah layar.
-  */
-  bottom: -70px;
+  bottom: -80px;
 
-  font-family: 'IBM Plex Mono', monospace;
+  font-family:
+    'IBM Plex Mono',
+    monospace;
 
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 
   font-weight: 700;
 
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 
   white-space: nowrap;
 
   opacity: 0;
 
-  /*
-    Animasi full:
-    bawah -> tengah -> atas
-  */
-  animation-name: floatingMoney;
-
-  animation-duration: 11s;
-
-  animation-timing-function: linear;
-
-  animation-iteration-count: infinite;
+  animation:
+    floatingMoney 12s linear infinite;
 
   will-change:
     transform,
     opacity;
 
-  /*
-    Membantu supaya tulisan
-    tetap kelihatan di light mode.
-  */
+  user-select: none;
+
   text-shadow:
-    0 1px 2px rgba(255, 255, 255, 0.95),
-    0 0 10px rgba(0, 0, 0, 0.08);
+    0 1px 2px rgba(255, 255, 255, 1),
+    0 0 8px rgba(255, 255, 255, 0.9);
 }
 
 
 /* =========================================================
-   INCOME
+   LANDING - INCOME
 ========================================================= */
 
 .money-float.income {
-  color: rgb(28 132 89);
+  color: rgb(25 126 84);
 
   text-shadow:
-    0 1px 2px rgba(255, 255, 255, 0.95),
-    0 0 12px rgba(47, 158, 110, 0.28);
+    0 1px 2px rgba(255, 255, 255, 1),
+    0 0 8px rgba(47, 158, 110, 0.30),
+    0 0 18px rgba(47, 158, 110, 0.15);
 }
 
 
 /* =========================================================
-   EXPENSE
+   LANDING - EXPENSE
 ========================================================= */
 
 .money-float.expense {
-  color: rgb(185 62 54);
+  color: rgb(180 57 49);
 
   text-shadow:
-    0 1px 2px rgba(255, 255, 255, 0.95),
-    0 0 12px rgba(192, 72, 63, 0.25);
+    0 1px 2px rgba(255, 255, 255, 1),
+    0 0 8px rgba(192, 72, 63, 0.30),
+    0 0 18px rgba(192, 72, 63, 0.15);
 }
 
 
 /* =========================================================
-   MONEY POSITIONS
+   LANDING - MONEY POSITIONS
 ========================================================= */
 
 .money-float-1 {
   left: 7%;
+
   animation-delay: -1s;
 }
 
 
 .money-float-2 {
   left: 22%;
+
   animation-delay: -5s;
 }
 
 
 .money-float-3 {
   left: 39%;
+
   animation-delay: -8s;
 }
 
 
 .money-float-4 {
   left: 56%;
+
   animation-delay: -3s;
 }
 
 
 .money-float-5 {
   left: 73%;
+
   animation-delay: -7s;
 }
 
 
 .money-float-6 {
   left: 88%;
+
   animation-delay: -10s;
 }
 
 
 .money-float-7 {
   left: 15%;
+
   animation-delay: -3.5s;
 }
 
 
 .money-float-8 {
   left: 47%;
+
   animation-delay: -6s;
 }
 
 
 .money-float-9 {
   left: 67%;
+
   animation-delay: -9s;
 }
 
 
 .money-float-10 {
   left: 82%;
+
   animation-delay: -2s;
 }
 
 
 /* =========================================================
-   FULL SCREEN MONEY ANIMATION
+   LANDING - FULL SCREEN MONEY ANIMATION
 ========================================================= */
 
 @keyframes floatingMoney {
 
-  /*
-    START
-    bawah layar
-  */
-
   0% {
     transform:
-      translate3d(0, 40px, 0)
+      translate3d(0, 50px, 0)
       rotate(-3deg);
 
     opacity: 0;
   }
 
-
-  /*
-    mulai terlihat
-  */
-
   8% {
-    opacity: 0.68;
+    opacity: 0.82;
   }
-
-
-  /*
-    naik 1/4 layar
-  */
 
   25% {
     transform:
-      translate3d(20px, -25vh, 0)
+      translate3d(22px, -25vh, 0)
       rotate(3deg);
 
-    opacity: 0.58;
+    opacity: 0.75;
   }
-
-
-  /*
-    tengah layar
-  */
 
   50% {
     transform:
-      translate3d(-18px, -50vh, 0)
+      translate3d(-20px, -50vh, 0)
       rotate(-2deg);
 
-    opacity: 0.5;
+    opacity: 0.68;
   }
-
-
-  /*
-    mendekati atas
-  */
 
   75% {
     transform:
-      translate3d(16px, -75vh, 0)
+      translate3d(18px, -75vh, 0)
       rotate(3deg);
 
-    opacity: 0.4;
+    opacity: 0.55;
   }
 
-
-  /*
-    mulai menghilang
-  */
-
-  92% {
-    opacity: 0.18;
+  90% {
+    opacity: 0.25;
   }
-
-
-  /*
-    keluar dari atas
-  */
 
   100% {
     transform:
-      translate3d(-10px, -115vh, 0)
+      translate3d(-12px, -115vh, 0)
       rotate(-3deg);
 
     opacity: 0;
   }
-
 }
 
 
 /* =========================================================
-   DARK MODE - MONEY
+   LANDING - DARK MODE MONEY
 ========================================================= */
 
 .dark .money-float.income {
   color: rgb(72 190 135);
 
   text-shadow:
-    0 0 10px rgba(72, 190, 135, 0.4),
-    0 0 20px rgba(72, 190, 135, 0.15);
+    0 0 8px rgba(72, 190, 135, 0.50),
+    0 0 18px rgba(72, 190, 135, 0.25),
+    0 0 30px rgba(72, 190, 135, 0.12);
 }
 
 
@@ -673,619 +723,11 @@ nav {
   color: rgb(224 103 94);
 
   text-shadow:
-    0 0 10px rgba(224, 103, 94, 0.4),
-    0 0 20px rgba(224, 103, 94, 0.15);
+    0 0 8px rgba(224, 103, 94, 0.50),
+    0 0 18px rgba(224, 103, 94, 0.25),
+    0 0 30px rgba(224, 103, 94, 0.12);
 }
 
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 768px) {
-
-  .money-float {
-    font-size: 0.7rem;
-
-    font-weight: 600;
-  }
-
-
-  /*
-    Kurangi jumlah uang
-    supaya mobile tidak terlalu ramai.
-  */
-
-  .money-float-2,
-  .money-float-5,
-  .money-float-7,
-  .money-float-9 {
-    display: none;
-  }
-
-}
-
-
-/* =========================================================
-   REDUCE MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .logo-letter,
-  .money-float {
-    animation: none;
-  }
-
-
-  .logo-letter {
-    opacity: 1;
-    transform: none;
-  }
-
-
-  .money-float {
-    display: none;
-  }
-
-}
-
-/* =========================================================
-   LOGIN PAGE
-========================================================= */
-
-.login-page {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 2.5rem 1rem;
-
-  background: rgb(var(--color-paper));
-  color: rgb(var(--color-ink));
-
-  isolation: isolate;
-}
-
-
-/* =========================================================
-   LOGIN CONTENT
-========================================================= */
-
-.login-content {
-  position: relative;
-  z-index: 10;
-
-  width: 100%;
-  max-width: 24rem;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-.login-logo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-
-  margin-bottom: 2rem;
-
-  color: rgb(var(--color-ink));
-
-  font-size: 1.25rem;
-  font-weight: 600;
-
-  text-decoration: none;
-
-  transition:
-    transform 200ms ease,
-    color 300ms ease;
-}
-
-.login-logo:hover {
-  transform: translateY(-2px);
-}
-
-.login-logo-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-
-  color: rgb(var(--color-forest-500));
-
-  filter:
-    drop-shadow(
-      0 0 7px
-      rgba(47, 158, 110, 0.22)
-    );
-
-  animation: loginLogoFloat 4s ease-in-out infinite;
-}
-
-.dark .login-logo-icon {
-  color: rgb(var(--color-gold));
-
-  filter:
-    drop-shadow(
-      0 0 8px
-      rgba(215, 177, 76, 0.32)
-    );
-}
-
-@keyframes loginLogoFloat {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
-
-  50% {
-    transform: translateY(-3px) rotate(-3deg);
-  }
-}
-
-
-/* =========================================================
-   LOGIN CARD
-========================================================= */
-
-.login-card {
-  position: relative;
-
-  width: 100%;
-
-  overflow: hidden;
-
-  animation: loginCardEnter 600ms ease-out both;
-}
-
-.login-card::before {
-  content: '';
-
-  position: absolute;
-
-  top: 0;
-  left: 15%;
-  right: 15%;
-
-  height: 1px;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgb(var(--color-gain) / 0.5),
-    rgb(var(--color-gold) / 0.65),
-    transparent
-  );
-
-  opacity: 0.8;
-}
-
-@keyframes loginCardEnter {
-  from {
-    opacity: 0;
-    transform: translateY(12px) scale(0.98);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-
-/* =========================================================
-   LOGIN BUTTON
-========================================================= */
-
-.login-submit {
-  box-shadow:
-    0 8px 20px
-    rgba(47, 158, 110, 0.12);
-}
-
-.login-submit:hover {
-  box-shadow:
-    0 10px 25px
-    rgba(47, 158, 110, 0.2);
-}
-
-
-/* =========================================================
-   BACKGROUND GLOW
-========================================================= */
-
-.login-glow {
-  position: absolute;
-
-  width: 26rem;
-  height: 26rem;
-
-  border-radius: 999px;
-
-  pointer-events: none;
-
-  filter: blur(80px);
-
-  z-index: -2;
-
-  opacity: 0.12;
-}
-
-.login-glow-one {
-  top: 5%;
-  left: 8%;
-
-  background: rgb(var(--color-gain));
-}
-
-.login-glow-two {
-  right: 5%;
-  bottom: 0%;
-
-  background: rgb(var(--color-gold));
-}
-
-.dark .login-glow {
-  opacity: 0.13;
-}
-
-
-/* =========================================================
-   FLOATING MONEY LAYER
-========================================================= */
-
-.login-money-layer {
-  position: absolute;
-
-  inset: 0;
-
-  overflow: hidden;
-
-  pointer-events: none;
-
-  z-index: 1;
-}
-
-
-/* =========================================================
-   MONEY
-========================================================= */
-
-.login-money {
-  position: absolute;
-
-  bottom: -4rem;
-
-  font-family: 'IBM Plex Mono', monospace;
-
-  font-size: 0.82rem;
-  font-weight: 700;
-
-  letter-spacing: -0.02em;
-
-  white-space: nowrap;
-
-  opacity: 0;
-
-  animation:
-    loginMoneyRise 10s linear infinite;
-
-  user-select: none;
-}
-
-.login-money.income {
-  color: rgb(var(--color-gain));
-
-  text-shadow:
-    0 0 10px
-    rgba(47, 158, 110, 0.16);
-}
-
-.login-money.expense {
-  color: rgb(var(--color-loss));
-
-  text-shadow:
-    0 0 10px
-    rgba(192, 72, 63, 0.16);
-}
-
-
-/* =========================================================
-   MONEY POSITIONS
-========================================================= */
-
-.login-money-1 {
-  left: 9%;
-  animation-delay: -1s;
-}
-
-.login-money-2 {
-  left: 24%;
-  animation-delay: -5s;
-}
-
-.login-money-3 {
-  left: 47%;
-  animation-delay: -7s;
-}
-
-.login-money-4 {
-  left: 66%;
-  animation-delay: -3s;
-}
-
-.login-money-5 {
-  left: 80%;
-  animation-delay: -8s;
-}
-
-.login-money-6 {
-  left: 91%;
-  animation-delay: -4s;
-}
-
-.login-money-7 {
-  left: 35%;
-  animation-delay: -6s;
-}
-
-.login-money-8 {
-  left: 73%;
-  animation-delay: -2s;
-}
-
-
-/* =========================================================
-   MONEY RISE ANIMATION
-========================================================= */
-
-@keyframes loginMoneyRise {
-  0% {
-    opacity: 0;
-
-    transform:
-      translate3d(0, 30px, 0)
-      rotate(-4deg);
-  }
-
-  10% {
-    opacity: 0.48;
-  }
-
-  30% {
-    transform:
-      translate3d(14px, -18vh, 0)
-      rotate(3deg);
-  }
-
-  50% {
-    opacity: 0.34;
-
-    transform:
-      translate3d(-10px, -42vh, 0)
-      rotate(-2deg);
-  }
-
-  70% {
-    opacity: 0.24;
-
-    transform:
-      translate3d(12px, -68vh, 0)
-      rotate(3deg);
-  }
-
-  88% {
-    opacity: 0.12;
-  }
-
-  100% {
-    opacity: 0;
-
-    transform:
-      translate3d(-6px, -105vh, 0)
-      rotate(-4deg);
-  }
-}
-
-
-/* =========================================================
-   FLOATING DOTS
-========================================================= */
-
-.login-money-dot {
-  position: absolute;
-
-  width: 5px;
-  height: 5px;
-
-  border-radius: 999px;
-
-  background: rgb(var(--color-gain));
-
-  opacity: 0.4;
-
-  box-shadow:
-    0 0 10px
-    rgba(47, 158, 110, 0.3);
-
-  animation:
-    loginDotPulse 3.5s ease-in-out infinite;
-}
-
-.login-dot-1 {
-  top: 17%;
-  left: 16%;
-}
-
-.login-dot-2 {
-  top: 31%;
-  left: 83%;
-
-  animation-delay: -1s;
-}
-
-.login-dot-3 {
-  top: 63%;
-  left: 9%;
-
-  animation-delay: -2s;
-}
-
-.login-dot-4 {
-  top: 72%;
-  right: 15%;
-
-  animation-delay: -0.5s;
-}
-
-.login-dot-5 {
-  top: 45%;
-  left: 92%;
-
-  animation-delay: -2.5s;
-}
-
-.login-dot-6 {
-  bottom: 12%;
-  left: 26%;
-
-  animation-delay: -1.5s;
-}
-
-@keyframes loginDotPulse {
-  0%,
-  100% {
-    opacity: 0.2;
-    transform: scale(0.7);
-  }
-
-  50% {
-    opacity: 0.65;
-    transform: scale(1.35);
-  }
-}
-
-
-/* =========================================================
-   DARK MODE
-========================================================= */
-
-.dark .login-money.income {
-  color: rgb(72 190 135);
-
-  text-shadow:
-    0 0 12px
-    rgba(72, 190, 135, 0.28);
-}
-
-.dark .login-money.expense {
-  color: rgb(224 103 94);
-
-  text-shadow:
-    0 0 12px
-    rgba(224, 103, 94, 0.25);
-}
-
-.dark .login-money-dot {
-  background: rgb(72 190 135);
-
-  box-shadow:
-    0 0 12px
-    rgba(72, 190, 135, 0.45);
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 640px) {
-
-  .login-page {
-    padding:
-      2rem 1rem
-      3rem;
-  }
-
-  .login-logo {
-    margin-bottom: 1.5rem;
-  }
-
-  .login-money {
-    font-size: 0.68rem;
-  }
-
-  .login-money-1 {
-    left: 4%;
-  }
-
-  .login-money-2 {
-    left: 18%;
-  }
-
-  .login-money-3 {
-    left: 68%;
-  }
-
-  .login-money-4 {
-    left: 86%;
-  }
-
-  .login-money-5,
-  .login-money-6,
-  .login-money-7,
-  .login-money-8 {
-    display: none;
-  }
-
-  .login-money-dot {
-    width: 4px;
-    height: 4px;
-  }
-
-  .login-glow {
-    width: 18rem;
-    height: 18rem;
-
-    filter: blur(65px);
-
-    opacity: 0.1;
-  }
-}
-
-
-/* =========================================================
-   REDUCE MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .login-money,
-  .login-money-dot,
-  .login-logo-icon,
-  .login-card {
-    animation: none;
-  }
-
-  .login-money {
-    display: none;
-  }
-
-  .login-card {
-    opacity: 1;
-    transform: none;
-  }
-}
 
 /* =========================================================
    LOGIN PAGE
@@ -1297,12 +739,14 @@ nav {
   min-height: 100vh;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   padding: 2.5rem 1rem;
 
   background: rgb(var(--color-paper));
+
   color: rgb(var(--color-ink));
 
   overflow: hidden;
@@ -1321,10 +765,13 @@ nav {
   z-index: 10;
 
   width: 100%;
+
   max-width: 24rem;
 
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
 }
 
@@ -1346,6 +793,7 @@ nav {
   color: rgb(var(--color-ink));
 
   font-size: 1.25rem;
+
   font-weight: 600;
 
   text-decoration: none;
@@ -1355,9 +803,12 @@ nav {
     color 300ms ease;
 }
 
+
 .login-logo:hover {
-  transform: translateY(-2px);
+  transform:
+    translateY(-2px);
 }
+
 
 .login-logo-icon {
   width: 1.5rem;
@@ -1375,6 +826,7 @@ nav {
     loginLogoFloat 4s ease-in-out infinite;
 }
 
+
 .dark .login-logo-icon {
   color: rgb(var(--color-gold));
 
@@ -1385,17 +837,19 @@ nav {
     );
 }
 
+
 @keyframes loginLogoFloat {
 
   0%,
   100% {
-    transform: translateY(0);
+    transform:
+      translateY(0);
   }
 
   50% {
-    transform: translateY(-3px);
+    transform:
+      translateY(-3px);
   }
-
 }
 
 
@@ -1417,8 +871,9 @@ nav {
 
   box-shadow:
     0 18px 45px
-    rgba(0, 0, 0, 0.08);
+    rgba(22, 33, 29, 0.08);
 }
+
 
 .login-card::before {
   content: '';
@@ -1426,25 +881,30 @@ nav {
   position: absolute;
 
   top: 0;
+
   left: 20%;
+
   right: 20%;
 
   height: 1px;
 
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgb(var(--color-gain) / 0.35),
-    rgb(var(--color-gold) / 0.45),
-    transparent
-  );
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgb(var(--color-gain) / 0.35),
+      rgb(var(--color-gold) / 0.45),
+      transparent
+    );
 }
+
 
 .dark .login-card {
   box-shadow:
     0 18px 45px
     rgba(0, 0, 0, 0.25);
 }
+
 
 @keyframes loginCardEnter {
 
@@ -1461,7 +921,6 @@ nav {
     transform:
       translateY(0);
   }
-
 }
 
 
@@ -1475,6 +934,7 @@ nav {
     rgba(47, 158, 110, 0.10);
 }
 
+
 .login-submit:hover {
   box-shadow:
     0 8px 20px
@@ -1483,41 +943,48 @@ nav {
 
 
 /* =========================================================
-   BACKGROUND GLOW
+   LOGIN BACKGROUND GLOW
 ========================================================= */
 
 .login-glow {
   position: absolute;
 
   width: 24rem;
+
   height: 24rem;
 
   border-radius: 999px;
 
   pointer-events: none;
 
-  filter: blur(110px);
+  filter:
+    blur(110px);
 
   z-index: -2;
 
   opacity: 0.045;
 }
 
+
 .login-glow-one {
   top: -10rem;
+
   left: -10rem;
 
   background:
     rgb(var(--color-gain));
 }
 
+
 .login-glow-two {
   right: -10rem;
+
   bottom: -10rem;
 
   background:
     rgb(var(--color-gold));
 }
+
 
 .dark .login-glow {
   opacity: 0.065;
@@ -1525,7 +992,7 @@ nav {
 
 
 /* =========================================================
-   FLOATING MONEY CONTAINER
+   LOGIN - FLOATING MONEY LAYER
 ========================================================= */
 
 .login-money-layer {
@@ -1542,7 +1009,7 @@ nav {
 
 
 /* =========================================================
-   FLOATING MONEY
+   LOGIN - FLOATING MONEY
 ========================================================= */
 
 .login-money {
@@ -1570,11 +1037,12 @@ nav {
 
 
 /* =========================================================
-   INCOME
+   LOGIN - INCOME
 ========================================================= */
 
 .login-money.income {
-  color: rgb(var(--color-gain));
+  color:
+    rgb(var(--color-gain));
 
   text-shadow:
     0 0 8px
@@ -1583,11 +1051,12 @@ nav {
 
 
 /* =========================================================
-   EXPENSE
+   LOGIN - EXPENSE
 ========================================================= */
 
 .login-money.expense {
-  color: rgb(var(--color-loss));
+  color:
+    rgb(var(--color-loss));
 
   text-shadow:
     0 0 8px
@@ -1596,89 +1065,75 @@ nav {
 
 
 /* =========================================================
-   MONEY POSITIONS
+   LOGIN - MONEY POSITIONS
 ========================================================= */
-
-/*
-   Kita sengaja taruh nominal di pinggir layar.
-   Card login tetap bersih di tengah.
-*/
-
-
-/* kiri atas */
 
 .login-money-1 {
   top: 15%;
+
   left: 5%;
 
   animation-delay: -2s;
 }
 
 
-/* kanan atas */
-
 .login-money-2 {
   top: 22%;
+
   right: 6%;
 
   animation-delay: -6s;
 }
 
 
-/* kiri tengah */
-
 .login-money-3 {
   top: 48%;
+
   left: 4%;
 
   animation-delay: -8s;
 }
 
 
-/* kanan tengah */
-
 .login-money-4 {
   top: 50%;
+
   right: 5%;
 
   animation-delay: -3s;
 }
 
 
-/* kiri bawah */
-
 .login-money-5 {
   bottom: 17%;
+
   left: 8%;
 
   animation-delay: -7s;
 }
 
 
-/* kanan bawah */
-
 .login-money-6 {
   bottom: 14%;
+
   right: 8%;
 
   animation-delay: -1s;
 }
 
 
-/* atas tengah */
-
 .login-money-7 {
   top: 7%;
+
   left: 28%;
 
   animation-delay: -5s;
 }
 
 
-/* bawah tengah */
-
 .login-money-8 {
   bottom: 7%;
+
   right: 28%;
 
   animation-delay: -9s;
@@ -1686,7 +1141,7 @@ nav {
 
 
 /* =========================================================
-   MONEY FLOAT ANIMATION
+   LOGIN - MONEY ANIMATION
 ========================================================= */
 
 @keyframes loginMoneyFloat {
@@ -1738,18 +1193,18 @@ nav {
       translate3d(-5px, -65vh, 0)
       rotate(-2deg);
   }
-
 }
 
 
 /* =========================================================
-   SMALL MONEY DOTS
+   LOGIN - SMALL DOTS
 ========================================================= */
 
 .login-money-dot {
   position: absolute;
 
   width: 4px;
+
   height: 4px;
 
   border-radius: 999px;
@@ -1767,45 +1222,58 @@ nav {
     loginDotPulse 4s ease-in-out infinite;
 }
 
+
 .login-dot-1 {
   top: 18%;
+
   left: 13%;
 }
 
+
 .login-dot-2 {
   top: 30%;
+
   right: 12%;
 
   animation-delay: -1s;
 }
 
+
 .login-dot-3 {
   top: 66%;
+
   left: 10%;
 
   animation-delay: -2s;
 }
 
+
 .login-dot-4 {
   top: 72%;
+
   right: 14%;
 
   animation-delay: -0.5s;
 }
 
+
 .login-dot-5 {
   top: 42%;
+
   left: 7%;
 
   animation-delay: -2.5s;
 }
 
+
 .login-dot-6 {
   bottom: 10%;
+
   right: 28%;
 
   animation-delay: -1.5s;
 }
+
 
 @keyframes loginDotPulse {
 
@@ -1823,12 +1291,11 @@ nav {
     transform:
       scale(1.25);
   }
-
 }
 
 
 /* =========================================================
-   DARK MODE - MONEY
+   LOGIN - DARK MONEY
 ========================================================= */
 
 .dark .login-money.income {
@@ -1840,6 +1307,7 @@ nav {
     rgba(72, 190, 135, 0.24);
 }
 
+
 .dark .login-money.expense {
   color:
     rgb(224 103 94);
@@ -1848,6 +1316,7 @@ nav {
     0 0 10px
     rgba(224, 103, 94, 0.20);
 }
+
 
 .dark .login-money-dot {
   background:
@@ -1860,176 +1329,54 @@ nav {
 
 
 /* =========================================================
-   CHROME AUTOFILL FIX
-========================================================= */
-
-/*
-   Ini yang menghilangkan background biru/abu-abu
-   ketika Chrome mengisi email/password otomatis.
-*/
-
-.login-page input:-webkit-autofill,
-.login-page input:-webkit-autofill:hover,
-.login-page input:-webkit-autofill:focus,
-.login-page input:-webkit-autofill:active {
-
-  -webkit-text-fill-color:
-    rgb(var(--color-ink));
-
-  -webkit-box-shadow:
-    0 0 0 1000px
-    rgb(var(--color-paper-card))
-    inset;
-
-  transition:
-    background-color 9999s ease-out;
-}
-
-
-/* DARK MODE AUTOFILL */
-
-.dark .login-page input:-webkit-autofill,
-.dark .login-page input:-webkit-autofill:hover,
-.dark .login-page input:-webkit-autofill:focus,
-.dark .login-page input:-webkit-autofill:active {
-
-  -webkit-text-fill-color:
-    rgb(var(--color-ink));
-
-  -webkit-box-shadow:
-    0 0 0 1000px
-    rgb(20 31 27)
-    inset;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 640px) {
-
-  .login-page {
-    padding:
-      2rem 1rem
-      3rem;
-  }
-
-  .login-logo {
-    margin-bottom: 1.5rem;
-  }
-
-  .login-money {
-    font-size: 0.68rem;
-  }
-
-  /*
-     Di HP cuma beberapa nominal.
-     Biar tidak terlalu ramai.
-  */
-
-  .login-money-1 {
-    top: 16%;
-    left: 3%;
-  }
-
-  .login-money-2 {
-    top: 24%;
-    right: 3%;
-  }
-
-  .login-money-3 {
-    bottom: 20%;
-    left: 4%;
-  }
-
-  .login-money-4 {
-    bottom: 14%;
-    right: 4%;
-  }
-
-  .login-money-5,
-  .login-money-6,
-  .login-money-7,
-  .login-money-8 {
-    display: none;
-  }
-
-  .login-money-dot {
-    width: 3px;
-    height: 3px;
-  }
-
-  .login-glow {
-    width: 15rem;
-    height: 15rem;
-
-    filter: blur(80px);
-
-    opacity: 0.035;
-  }
-
-}
-
-
-/* =========================================================
-   REDUCE MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .login-money,
-  .login-money-dot,
-  .login-logo-icon,
-  .login-card {
-    animation: none;
-  }
-
-  .login-money {
-    display: none;
-  }
-
-  .login-card {
-    opacity: 1;
-
-    transform: none;
-  }
-
-}
-
-/* =========================================================
-   REGISTER - FLOATING MONEY
+   REGISTER - PAGE
 ========================================================= */
 
 .register-page {
   isolation: isolate;
 }
 
-/* Layer uang memenuhi seluruh halaman */
+
+/* =========================================================
+   REGISTER - MONEY LAYER
+========================================================= */
+
 .register-money-layer {
   position: absolute;
+
   inset: 0;
+
   overflow: hidden;
+
   pointer-events: none;
+
   z-index: 0;
 }
 
+
 /* =========================================================
-   NOMINAL UANG
+   REGISTER - MONEY
 ========================================================= */
 
 .register-money {
   position: absolute;
 
   display: inline-flex;
+
   align-items: center;
+
   gap: 4px;
 
-  font-family: 'IBM Plex Mono', monospace;
+  font-family:
+    'IBM Plex Mono',
+    monospace;
+
   font-size: 0.85rem;
+
   font-weight: 700;
 
   letter-spacing: -0.02em;
+
   white-space: nowrap;
 
   opacity: 0;
@@ -2039,134 +1386,188 @@ nav {
     registerMoneyFade 8s ease-in-out infinite;
 }
 
-/* PEMASUKAN */
+
+/* =========================================================
+   REGISTER - INCOME
+========================================================= */
 
 .register-money-income {
-  color: rgb(34 145 96);
+  color:
+    rgb(34 145 96);
 
   text-shadow:
-    0 1px 5px rgba(34, 145, 96, 0.18),
-    0 0 12px rgba(34, 145, 96, 0.10);
+    0 1px 5px
+    rgba(34, 145, 96, 0.18),
+    0 0 12px
+    rgba(34, 145, 96, 0.10);
 }
 
-/* PENGELUARAN */
+
+/* =========================================================
+   REGISTER - EXPENSE
+========================================================= */
 
 .register-money-expense {
-  color: rgb(190 67 58);
+  color:
+    rgb(190 67 58);
 
   text-shadow:
-    0 1px 5px rgba(190, 67, 58, 0.18),
-    0 0 12px rgba(190, 67, 58, 0.10);
+    0 1px 5px
+    rgba(190, 67, 58, 0.18),
+    0 0 12px
+    rgba(190, 67, 58, 0.10);
 }
 
-/* ICON PANAH */
+
+/* =========================================================
+   REGISTER - ARROW
+========================================================= */
 
 .register-money-arrow {
   width: 15px;
+
   height: 15px;
+
   flex-shrink: 0;
 }
 
+
 /* =========================================================
-   POSISI UANG
+   REGISTER - MONEY POSITIONS
 ========================================================= */
 
 .money-register-1 {
   left: 8%;
+
   bottom: -30px;
 }
+
 
 .money-register-2 {
   left: 23%;
+
   bottom: -50px;
 }
 
+
 .money-register-3 {
   left: 40%;
+
   bottom: -35px;
 }
 
+
 .money-register-4 {
   left: 55%;
+
   bottom: -60px;
 }
 
+
 .money-register-5 {
   left: 68%;
+
   bottom: -40px;
 }
 
+
 .money-register-6 {
   left: 80%;
+
   bottom: -55px;
 }
 
+
 .money-register-7 {
   left: 91%;
+
   bottom: -30px;
 }
 
+
 .money-register-8 {
   left: 32%;
+
   bottom: -70px;
 }
 
+
 /* =========================================================
-   DOT DECORATION
+   REGISTER - DOTS
 ========================================================= */
 
 .register-dot {
   position: absolute;
 
   width: 5px;
+
   height: 5px;
 
   border-radius: 999px;
 
-  background: rgb(34 145 96);
+  background:
+    rgb(34 145 96);
 
   opacity: 0.45;
 
   box-shadow:
-    0 0 10px rgba(34, 145, 96, 0.35);
+    0 0 10px
+    rgba(34, 145, 96, 0.35);
 
-  animation: registerDotPulse 3s ease-in-out infinite;
+  animation:
+    registerDotPulse 3s ease-in-out infinite;
 }
+
 
 .register-dot-1 {
   left: 14%;
+
   top: 22%;
 }
 
+
 .register-dot-2 {
   left: 30%;
+
   top: 70%;
+
   animation-delay: -1s;
 }
 
+
 .register-dot-3 {
   right: 14%;
+
   top: 25%;
+
   animation-delay: -2s;
 }
 
+
 .register-dot-4 {
   right: 25%;
+
   bottom: 18%;
+
   animation-delay: -0.5s;
 }
 
+
 .register-dot-5 {
   left: 10%;
+
   bottom: 30%;
+
   animation-delay: -1.5s;
 }
 
+
 /* =========================================================
-   FLOATING ANIMATION
+   REGISTER - FLOATING ANIMATION
 ========================================================= */
 
 @keyframes registerMoneyFloat {
+
   0% {
     transform:
       translate3d(0, 40px, 0)
@@ -2198,7 +1599,13 @@ nav {
   }
 }
 
+
+/* =========================================================
+   REGISTER - FADE
+========================================================= */
+
 @keyframes registerMoneyFade {
+
   0% {
     opacity: 0;
   }
@@ -2228,114 +1635,314 @@ nav {
   }
 }
 
+
 /* =========================================================
-   DOT ANIMATION
+   REGISTER - DOT ANIMATION
 ========================================================= */
 
 @keyframes registerDotPulse {
+
   0% {
-    transform: scale(0.7);
+    transform:
+      scale(0.7);
+
     opacity: 0.25;
   }
 
   50% {
-    transform: scale(1.3);
+    transform:
+      scale(1.3);
+
     opacity: 0.7;
   }
 
   100% {
-    transform: scale(0.7);
+    transform:
+      scale(0.7);
+
     opacity: 0.25;
   }
 }
 
+
 /* =========================================================
-   DARK MODE
+   REGISTER - DARK MODE
 ========================================================= */
 
 .dark .register-money-income {
-  color: rgb(72 190 135);
+  color:
+    rgb(72 190 135);
 
   text-shadow:
-    0 0 12px rgba(72, 190, 135, 0.22),
-    0 1px 6px rgba(72, 190, 135, 0.15);
+    0 0 12px
+    rgba(72, 190, 135, 0.22),
+    0 1px 6px
+    rgba(72, 190, 135, 0.15);
 }
+
 
 .dark .register-money-expense {
-  color: rgb(224 103 94);
+  color:
+    rgb(224 103 94);
 
   text-shadow:
-    0 0 12px rgba(224, 103, 94, 0.22),
-    0 1px 6px rgba(224, 103, 94, 0.15);
+    0 0 12px
+    rgba(224, 103, 94, 0.22),
+    0 1px 6px
+    rgba(224, 103, 94, 0.15);
 }
+
 
 .dark .register-dot {
-  background: rgb(72 190 135);
+  background:
+    rgb(72 190 135);
 
   box-shadow:
-    0 0 12px rgba(72, 190, 135, 0.45);
+    0 0 12px
+    rgba(72, 190, 135, 0.45);
 }
 
+
 /* =========================================================
-   MOBILE
+   CHROME AUTOFILL FIX
+========================================================= */
+
+.login-page input:-webkit-autofill,
+.login-page input:-webkit-autofill:hover,
+.login-page input:-webkit-autofill:focus,
+.login-page input:-webkit-autofill:active {
+
+  -webkit-text-fill-color:
+    rgb(var(--color-ink));
+
+  -webkit-box-shadow:
+    0 0 0 1000px
+    rgb(var(--color-paper-card))
+    inset;
+
+  transition:
+    background-color 9999s ease-out;
+}
+
+
+.dark .login-page input:-webkit-autofill,
+.dark .login-page input:-webkit-autofill:hover,
+.dark .login-page input:-webkit-autofill:focus,
+.dark .login-page input:-webkit-autofill:active {
+
+  -webkit-text-fill-color:
+    rgb(var(--color-ink));
+
+  -webkit-box-shadow:
+    0 0 0 1000px
+    rgb(20 31 27)
+    inset;
+}
+
+
+/* =========================================================
+   MOBILE - LANDING
 ========================================================= */
 
 @media (max-width: 768px) {
+
+  .money-float {
+    font-size: 0.7rem;
+
+    font-weight: 700;
+  }
+
+
+  .money-float-2,
+  .money-float-5,
+  .money-float-7,
+  .money-float-9 {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   MOBILE - LOGIN
+========================================================= */
+
+@media (max-width: 640px) {
+
+  .login-page {
+    padding:
+      2rem 1rem
+      3rem;
+  }
+
+
+  .login-logo {
+    margin-bottom: 1.5rem;
+  }
+
+
+  .login-money {
+    font-size: 0.68rem;
+  }
+
+
+  .login-money-1 {
+    top: 16%;
+
+    left: 3%;
+  }
+
+
+  .login-money-2 {
+    top: 24%;
+
+    right: 3%;
+  }
+
+
+  .login-money-3 {
+    bottom: 20%;
+
+    left: 4%;
+  }
+
+
+  .login-money-4 {
+    bottom: 14%;
+
+    right: 4%;
+  }
+
+
+  .login-money-5,
+  .login-money-6,
+  .login-money-7,
+  .login-money-8 {
+    display: none;
+  }
+
+
+  .login-money-dot {
+    width: 3px;
+
+    height: 3px;
+  }
+
+
+  .login-glow {
+    width: 15rem;
+
+    height: 15rem;
+
+    filter:
+      blur(80px);
+
+    opacity: 0.035;
+  }
+}
+
+
+/* =========================================================
+   MOBILE - REGISTER
+========================================================= */
+
+@media (max-width: 768px) {
+
   .register-money {
     font-size: 0.68rem;
+
     opacity: 0;
   }
 
+
   .register-money-arrow {
     width: 12px;
+
     height: 12px;
   }
+
 
   .money-register-1 {
     left: 2%;
   }
 
+
   .money-register-2 {
     left: 12%;
   }
+
 
   .money-register-3 {
     left: 25%;
   }
 
+
   .money-register-4 {
     left: 42%;
   }
+
 
   .money-register-5 {
     left: 58%;
   }
 
+
   .money-register-6 {
     left: 72%;
   }
 
+
   .money-register-7 {
     left: 84%;
   }
+
 
   .money-register-8 {
     left: 35%;
   }
 }
 
+
 /* =========================================================
    REDUCE MOTION
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
+  .logo-letter,
+  .money-float,
+  .login-money,
+  .login-money-dot,
+  .login-logo-icon,
+  .login-card,
   .register-money,
   .register-dot {
     animation: none;
   }
 
+
+  .logo-letter {
+    opacity: 1;
+
+    transform: none;
+  }
+
+
+  .money-float,
+  .login-money {
+    display: none;
+  }
+
+
+  .login-card {
+    opacity: 1;
+
+    transform: none;
+  }
+
+
   .register-money {
     opacity: 0.4;
+
     transform: none;
   }
 }
