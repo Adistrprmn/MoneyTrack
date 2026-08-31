@@ -7,7 +7,7 @@
 
 /* =========================================================
    LIGHT MODE
-   ========================================================= */
+========================================================= */
 
 :root {
   --color-paper: 244 246 244;
@@ -38,7 +38,7 @@
 
 /* =========================================================
    DARK MODE
-   ========================================================= */
+========================================================= */
 
 .dark {
   --color-paper: 15 25 21;
@@ -52,7 +52,6 @@
   --color-forest-100: 51 76 66;
   --color-forest-300: 110 156 135;
 
-  /* Hijau utama dibuat tetap terlihat di dark mode */
   --color-forest-500: 64 126 103;
   --color-forest-600: 52 108 88;
   --color-forest-700: 40 88 72;
@@ -71,15 +70,17 @@
 
 /* =========================================================
    GLOBAL
-   ========================================================= */
+========================================================= */
 
 html {
   min-height: 100%;
   background: rgb(var(--color-paper));
+
   transition:
     background-color 300ms ease,
     color 300ms ease;
 }
+
 
 body {
   margin: 0;
@@ -96,9 +97,11 @@ body {
     color 300ms ease;
 }
 
+
 #root {
   min-height: 100vh;
 }
+
 
 button,
 input,
@@ -107,9 +110,11 @@ textarea {
   font-family: inherit;
 }
 
+
 button {
   cursor: pointer;
 }
+
 
 * {
   box-sizing: border-box;
@@ -118,7 +123,7 @@ button {
 
 /* =========================================================
    TYPOGRAPHY
-   ========================================================= */
+========================================================= */
 
 h1,
 h2,
@@ -129,6 +134,7 @@ h6 {
   color: rgb(var(--color-ink));
 }
 
+
 p {
   color: rgb(var(--color-ink));
 }
@@ -136,56 +142,74 @@ p {
 
 /* =========================================================
    CUSTOM COMPONENTS
-   ========================================================= */
+========================================================= */
 
 @layer components {
+
   .card {
     @apply rounded-xl2 border border-paper-line bg-paper-card shadow-card;
   }
+
 
   .label {
     @apply mb-1.5 block text-sm font-medium text-ink;
   }
 
+
   .input {
     @apply w-full rounded-lg border border-paper-line bg-paper-card px-3.5 py-2.5 text-sm text-ink outline-none transition;
   }
+
 
   .input::placeholder {
     @apply text-ink-soft/50;
   }
 
+
   .input:focus {
     @apply border-forest-500 ring-2 ring-forest-500/10;
   }
 
+
   .btn-primary {
-    @apply inline-flex items-center justify-center whitespace-nowrap rounded-lg bg-forest-500 px-4 py-2.5 text-sm font-semibold text-white transition;
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-forest-500 px-4 py-2.5 text-sm font-semibold text-white transition;
   }
+
 
   .btn-primary:hover {
     @apply bg-forest-600;
   }
 
+
   .btn-primary:disabled {
     @apply cursor-not-allowed opacity-60;
   }
 
+
   .btn-secondary {
-    @apply inline-flex items-center justify-center whitespace-nowrap rounded-lg border border-paper-line bg-paper-card px-4 py-2.5 text-sm font-semibold text-ink transition;
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-paper-line bg-paper-card px-4 py-2.5 text-sm font-semibold text-ink transition;
   }
+
 
   .btn-secondary:hover {
     @apply bg-paper;
   }
 
+
   .btn-danger {
-    @apply inline-flex items-center justify-center whitespace-nowrap rounded-lg bg-loss px-4 py-2.5 text-sm font-semibold text-white transition;
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-loss px-4 py-2.5 text-sm font-semibold text-white transition;
   }
+
 
   .btn-danger:hover {
     @apply opacity-90;
   }
+
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg px-3 py-2.5 text-sm font-semibold text-ink;
+  }
+
 
   button,
   a {
@@ -193,17 +217,20 @@ p {
   }
 }
 
+
 /* =========================================================
    DARK MODE - COMPONENTS
-   ========================================================= */
+========================================================= */
 
 .dark .card {
   background: rgb(var(--color-paper-card));
   border-color: rgb(var(--color-paper-line));
+
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.25),
     0 8px 24px -12px rgba(0, 0, 0, 0.45);
 }
+
 
 .dark .input {
   background: rgb(20 31 27);
@@ -211,13 +238,16 @@ p {
   border-color: rgb(var(--color-paper-line));
 }
 
+
 .dark .input::placeholder {
   color: rgb(140 158 149);
 }
 
+
 .dark .input:hover {
   border-color: rgb(var(--color-forest-300));
 }
+
 
 .dark .input:focus {
   border-color: rgb(var(--color-forest-300));
@@ -226,20 +256,17 @@ p {
 
 /* =========================================================
    DARK MODE - WHITE TAILWIND ELEMENTS
-   ========================================================= */
-
-/*
-  Beberapa komponen lama menggunakan bg-white / border-white.
-  Kita override supaya tidak menyala putih ketika dark mode.
-*/
+========================================================= */
 
 .dark .bg-white {
   background-color: rgb(var(--color-paper-card));
 }
 
+
 .dark .border-white {
   border-color: rgb(var(--color-paper-line));
 }
+
 
 .dark .text-black {
   color: rgb(var(--color-ink));
@@ -248,12 +275,13 @@ p {
 
 /* =========================================================
    DARK MODE - BUTTON
-   ========================================================= */
+========================================================= */
 
 .dark .btn-primary {
   background: rgb(var(--color-forest-500));
   color: white;
 }
+
 
 .dark .btn-primary:hover {
   background: rgb(var(--color-forest-600));
@@ -262,21 +290,24 @@ p {
 
 /* =========================================================
    SCROLLBAR
-   ========================================================= */
+========================================================= */
 
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
+
 ::-webkit-scrollbar-track {
   background: rgb(var(--color-paper));
 }
+
 
 ::-webkit-scrollbar-thumb {
   background: rgb(var(--color-paper-line));
   border-radius: 999px;
 }
+
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(var(--color-forest-300));
@@ -285,7 +316,7 @@ p {
 
 /* =========================================================
    SELECTION
-   ========================================================= */
+========================================================= */
 
 ::selection {
   background: rgb(var(--color-gold) / 0.3);
@@ -295,7 +326,7 @@ p {
 
 /* =========================================================
    THEME TRANSITION
-   ========================================================= */
+========================================================= */
 
 html,
 body,
@@ -312,17 +343,23 @@ nav {
     color 300ms ease;
 }
 
-/* =================================
-   MoneyTrack Logo Loop Animation
-================================= */
+
+/* =========================================================
+   MONEYTRACK LOGO ANIMATION
+========================================================= */
 
 .logo-letter {
   display: inline-block;
+
   opacity: 0;
-  animation: logoLetterLoop 3s infinite;
+
+  animation:
+    logoLetterLoop 3s infinite;
 }
 
+
 @keyframes logoLetterLoop {
+
   0% {
     opacity: 0;
     transform: translateX(-5px);
@@ -347,12 +384,348 @@ nav {
     opacity: 0;
     transform: translateX(5px);
   }
+
 }
 
+
+/* =========================================================
+   FLOATING MONEY - LANDING PAGE
+========================================================= */
+
+.landing-page {
+  position: relative;
+
+  /*
+    Supaya halaman tidak menghasilkan
+    horizontal scrollbar gara-gara animasi.
+  */
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   FLOATING MONEY CONTAINER
+========================================================= */
+
+.money-float-container {
+  position: fixed;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  /*
+    Di belakang tulisan/card,
+    tetapi tetap terlihat di background.
+  */
+  z-index: 0;
+}
+
+
+/* =========================================================
+   MONEY
+========================================================= */
+
+.money-float {
+  position: absolute;
+
+  /*
+    Mulai dari bawah layar.
+  */
+  bottom: -70px;
+
+  font-family: 'IBM Plex Mono', monospace;
+
+  font-size: 0.9rem;
+
+  font-weight: 700;
+
+  letter-spacing: -0.02em;
+
+  white-space: nowrap;
+
+  opacity: 0;
+
+  /*
+    Animasi full:
+    bawah -> tengah -> atas
+  */
+  animation-name: floatingMoney;
+
+  animation-duration: 11s;
+
+  animation-timing-function: linear;
+
+  animation-iteration-count: infinite;
+
+  will-change:
+    transform,
+    opacity;
+
+  /*
+    Membantu supaya tulisan
+    tetap kelihatan di light mode.
+  */
+  text-shadow:
+    0 1px 2px rgba(255, 255, 255, 0.95),
+    0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   INCOME
+========================================================= */
+
+.money-float.income {
+  color: rgb(28 132 89);
+
+  text-shadow:
+    0 1px 2px rgba(255, 255, 255, 0.95),
+    0 0 12px rgba(47, 158, 110, 0.28);
+}
+
+
+/* =========================================================
+   EXPENSE
+========================================================= */
+
+.money-float.expense {
+  color: rgb(185 62 54);
+
+  text-shadow:
+    0 1px 2px rgba(255, 255, 255, 0.95),
+    0 0 12px rgba(192, 72, 63, 0.25);
+}
+
+
+/* =========================================================
+   MONEY POSITIONS
+========================================================= */
+
+.money-float-1 {
+  left: 7%;
+  animation-delay: -1s;
+}
+
+
+.money-float-2 {
+  left: 22%;
+  animation-delay: -5s;
+}
+
+
+.money-float-3 {
+  left: 39%;
+  animation-delay: -8s;
+}
+
+
+.money-float-4 {
+  left: 56%;
+  animation-delay: -3s;
+}
+
+
+.money-float-5 {
+  left: 73%;
+  animation-delay: -7s;
+}
+
+
+.money-float-6 {
+  left: 88%;
+  animation-delay: -10s;
+}
+
+
+.money-float-7 {
+  left: 15%;
+  animation-delay: -3.5s;
+}
+
+
+.money-float-8 {
+  left: 47%;
+  animation-delay: -6s;
+}
+
+
+.money-float-9 {
+  left: 67%;
+  animation-delay: -9s;
+}
+
+
+.money-float-10 {
+  left: 82%;
+  animation-delay: -2s;
+}
+
+
+/* =========================================================
+   FULL SCREEN MONEY ANIMATION
+========================================================= */
+
+@keyframes floatingMoney {
+
+  /*
+    START
+    bawah layar
+  */
+
+  0% {
+    transform:
+      translate3d(0, 40px, 0)
+      rotate(-3deg);
+
+    opacity: 0;
+  }
+
+
+  /*
+    mulai terlihat
+  */
+
+  8% {
+    opacity: 0.68;
+  }
+
+
+  /*
+    naik 1/4 layar
+  */
+
+  25% {
+    transform:
+      translate3d(20px, -25vh, 0)
+      rotate(3deg);
+
+    opacity: 0.58;
+  }
+
+
+  /*
+    tengah layar
+  */
+
+  50% {
+    transform:
+      translate3d(-18px, -50vh, 0)
+      rotate(-2deg);
+
+    opacity: 0.5;
+  }
+
+
+  /*
+    mendekati atas
+  */
+
+  75% {
+    transform:
+      translate3d(16px, -75vh, 0)
+      rotate(3deg);
+
+    opacity: 0.4;
+  }
+
+
+  /*
+    mulai menghilang
+  */
+
+  92% {
+    opacity: 0.18;
+  }
+
+
+  /*
+    keluar dari atas
+  */
+
+  100% {
+    transform:
+      translate3d(-10px, -115vh, 0)
+      rotate(-3deg);
+
+    opacity: 0;
+  }
+
+}
+
+
+/* =========================================================
+   DARK MODE - MONEY
+========================================================= */
+
+.dark .money-float.income {
+  color: rgb(72 190 135);
+
+  text-shadow:
+    0 0 10px rgba(72, 190, 135, 0.4),
+    0 0 20px rgba(72, 190, 135, 0.15);
+}
+
+
+.dark .money-float.expense {
+  color: rgb(224 103 94);
+
+  text-shadow:
+    0 0 10px rgba(224, 103, 94, 0.4),
+    0 0 20px rgba(224, 103, 94, 0.15);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .money-float {
+    font-size: 0.7rem;
+
+    font-weight: 600;
+  }
+
+
+  /*
+    Kurangi jumlah uang
+    supaya mobile tidak terlalu ramai.
+  */
+
+  .money-float-2,
+  .money-float-5,
+  .money-float-7,
+  .money-float-9 {
+    display: none;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
-  .logo-letter {
+
+  .logo-letter,
+  .money-float {
     animation: none;
+  }
+
+
+  .logo-letter {
     opacity: 1;
     transform: none;
   }
+
+
+  .money-float {
+    display: none;
+  }
+
 }
