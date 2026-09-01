@@ -1,10 +1,9 @@
 import { useState } from 'react'
+import Notification from '../components/Notification'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   Coins,
   ArrowRight,
-  TrendingUp,
-  TrendingDown,
 } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 
@@ -18,7 +17,40 @@ export default function Login() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
+  // =====================================================
+  // NOTIFICATION
+  // =====================================================
+
+  const [notification, setNotification] = useState({
+    show: false,
+    type: 'success',
+    title: '',
+    message: '',
+  })
+
+  const showNotification = (type, title, message) => {
+    setNotification({
+      show: true,
+      type,
+      title,
+      message,
+    })
+  }
+
+  const closeNotification = () => {
+    setNotification({
+      show: false,
+      type: 'success',
+      title: '',
+      message: '',
+    })
+  }
+
   const from = location.state?.from?.pathname || '/dashboard'
+
+  // =====================================================
+  // LOGIN
+  // =====================================================
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -37,9 +69,32 @@ export default function Login() {
         password,
       })
 
-      navigate(from, {
-        replace: true,
-      })
+      sessionStorage.setItem(
+  'moneytrack_login_success',
+  'true'
+)
+
+navigate(from, {
+  replace: true,
+})
+
+      // =================================================
+      // NOTIF BERHASIL LOGIN
+      // =================================================
+
+      showNotification(
+        'success',
+        'Berhasil masuk 👋',
+        'Selamat datang kembali di MoneyTrack.'
+      )
+
+      // Kasih waktu notif terlihat sebelum pindah halaman
+      setTimeout(() => {
+        navigate(from, {
+          replace: true,
+        })
+      }, 1200)
+
     } catch (err) {
       if (
         err.message
@@ -63,6 +118,20 @@ export default function Login() {
 
   return (
     <div className="login-page">
+
+      {/* =====================================================
+          NOTIFICATION
+      ====================================================== */}
+
+      {notification.show && (
+        <Notification
+          type={notification.type}
+          title={notification.title}
+          message={notification.message}
+          onClose={closeNotification}
+        />
+      )}
+
 
       {/* =====================================================
           BACKGROUND GLOW

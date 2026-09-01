@@ -1946,3 +1946,214 @@ nav {
     transform: none;
   }
 }
+
+/* =========================================================
+   MOBILE - LANDING NAVBAR
+   Mengecilkan navbar khusus tampilan HP
+========================================================= */
+
+@media (max-width: 640px) {
+
+  /* Navbar landing */
+  .landing-page header {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+
+  /* Container isi navbar */
+  .landing-page header > div {
+    gap: 0.4rem !important;
+  }
+
+
+  /* =====================================================
+     LOGO MONEYTRACK
+  ===================================================== */
+
+  .landing-page header a {
+    font-size: 0.85rem !important;
+  }
+
+
+  /* Icon logo */
+  .landing-page header a svg {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+
+  /* =====================================================
+     BAGIAN NAVBAR KANAN
+  ===================================================== */
+
+  .landing-page header nav,
+  .landing-page header > div > div {
+    gap: 0.3rem !important;
+  }
+
+
+  /* =====================================================
+     BUTTON TOGGLE LIGHT / DARK
+  ===================================================== */
+
+  .landing-page header button {
+    min-width: 0 !important;
+    width: 2rem !important;
+    height: 2rem !important;
+
+    padding: 0 !important;
+
+    border-radius: 999px !important;
+
+    font-size: 0.7rem !important;
+  }
+
+
+  .landing-page header button svg {
+    width: 0.85rem !important;
+    height: 0.85rem !important;
+  }
+
+
+  /* =====================================================
+     LINK "MASUK"
+  ===================================================== */
+
+  .landing-page header a[href*="login"],
+  .landing-page header a[href*="masuk"] {
+    font-size: 0.68rem !important;
+
+    padding: 0.4rem 0.45rem !important;
+  }
+
+
+  /* =====================================================
+     BUTTON "BUAT AKUN"
+  ===================================================== */
+
+  .landing-page header a[href*="register"],
+  .landing-page header a[href*="daftar"] {
+    font-size: 0.65rem !important;
+
+    padding: 0.45rem 0.6rem !important;
+
+    border-radius: 0.45rem !important;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE - LANDING NAVBAR EXTRA SMALL
+   Untuk HP yang lebarnya kecil
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .landing-page header {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+
+  /* Logo sedikit lebih kecil */
+  .landing-page header a {
+    font-size: 0.78rem !important;
+  }
+
+
+  .landing-page header a svg {
+    width: 0.9rem !important;
+    height: 0.9rem !important;
+  }
+
+
+  /* Jarak antar item */
+  .landing-page header nav,
+  .landing-page header > div > div {
+    gap: 0.2rem !important;
+  }
+
+
+  /* Toggle */
+  .landing-page header button {
+    width: 1.8rem !important;
+    height: 1.8rem !important;
+  }
+
+
+  .landing-page header button svg {
+    width: 0.75rem !important;
+    height: 0.75rem !important;
+  }
+
+
+  /* Masuk */
+  .landing-page header a[href*="login"],
+  .landing-page header a[href*="masuk"] {
+    font-size: 0.62rem !important;
+
+    padding-left: 0.3rem !important;
+    padding-right: 0.3rem !important;
+  }
+
+
+  /* Buat Akun */
+  .landing-page header a[href*="register"],
+  .landing-page header a[href*="daftar"] {
+    font-size: 0.58rem !important;
+
+    padding:
+      0.4rem
+      0.5rem !important;
+  }
+
+}
+
+/* =====================================================
+   WELCOME NOTIFICATION
+===================================================== */
+
+.welcome-toast {
+  animation: welcomeToastIn 0.45s ease-out;
+}
+
+@keyframes welcomeToastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px) translateX(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+}
+
+
+/* =====================================================
+   WELCOME NOTIFICATION - MOBILE
+===================================================== */
+
+@media (max-width: 640px) {
+  .welcome-toast {
+    top: 1rem;
+    right: 1rem;
+    left: 1rem;
+    width: auto;
+    max-width: none;
+  }
+}
+
+@keyframes notification-in {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) translateX(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+}

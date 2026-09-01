@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import Notification from '../components/Notification'
 import { Link } from 'react-router-dom'
 import {
   Wallet,
@@ -64,6 +65,33 @@ export default function Dashboard() {
   const [modalType, setModalType] = useState(null)
 
   // ============================================================
+  // NOTIFICATION
+  // ============================================================
+
+  const [notification, setNotification] = useState({
+    show: false,
+    type: 'success',
+    title: '',
+    message: '',
+  })
+
+  function showNotification(type, title, message) {
+    setNotification({
+      show: true,
+      type,
+      title,
+      message,
+    })
+  }
+
+  function closeNotification() {
+    setNotification((prev) => ({
+      ...prev,
+      show: false,
+    }))
+  }
+
+  // ============================================================
   // NAMA USER
   // ============================================================
 
@@ -73,17 +101,41 @@ export default function Dashboard() {
     'Pengguna'
 
   // ============================================================
+  // NOTIFIKASI SELAMAT DATANG
+  // MUNCUL SEKALI SAAT MASUK DASHBOARD
+  // ============================================================
+
+  useEffect(() => {
+    const shouldShowWelcome =
+      sessionStorage.getItem('moneytrack_login_success')
+
+    if (shouldShowWelcome === 'true') {
+      showNotification(
+        'success',
+        'Berhasil masuk 👋',
+        `Selamat datang kembali di MoneyTrack, ${displayName}.`
+      )
+
+      sessionStorage.removeItem(
+        'moneytrack_login_success'
+      )
+    }
+  }, [displayName])
+
+  // ============================================================
   // DATA PERIODE
   // ============================================================
 
-  const { start, end } = getRangeForPeriod(period)
+  const { start, end } =
+    getRangeForPeriod(period)
 
-  const periodTx = transactions.filter((transaction) =>
-    isWithinRange(
-      transaction.transaction_date,
-      start,
-      end
-    )
+  const periodTx = transactions.filter(
+    (transaction) =>
+      isWithinRange(
+        transaction.transaction_date,
+        start,
+        end
+      )
   )
 
   // ============================================================
@@ -127,7 +179,8 @@ export default function Dashboard() {
   // JUMLAH TRANSAKSI
   // ============================================================
 
-  const transactionCount = periodTx.length
+  const transactionCount =
+    periodTx.length
 
   // ============================================================
   // PENGELUARAN BERDASARKAN KATEGORI
@@ -151,14 +204,16 @@ export default function Dashboard() {
           }
         }
 
-        result[categoryName].amount += Number(
-          transaction.amount
-        )
+        result[categoryName].amount +=
+          Number(transaction.amount)
 
         return result
       }, {})
   )
-    .sort((a, b) => b.amount - a.amount)
+    .sort(
+      (a, b) =>
+        b.amount - a.amount
+    )
     .slice(0, 6)
 
   // ============================================================
@@ -175,7 +230,9 @@ export default function Dashboard() {
   // PERSENTASE KATEGORI
   // ============================================================
 
-  const getCategoryPercentage = (amount) => {
+  const getCategoryPercentage = (
+    amount
+  ) => {
     if (periodExpense <= 0) {
       return 0
     }
@@ -189,29 +246,49 @@ export default function Dashboard() {
   // TRANSAKSI TERBARU
   // ============================================================
 
-  const recent = transactions.slice(0, 5)
+  const recent =
+    transactions.slice(0, 5)
 
   // ============================================================
   // TAMBAH TRANSAKSI
   // ============================================================
 
-  async function handleAddTransaction(payload) {
-    let categoryId = payload.category_id
+  async function handleAddTransaction(
+    payload
+  ) {
+    let categoryId =
+      payload.category_id
 
     // Jika user memilih / membuat kategori custom
     if (payload.custom_category) {
-      const newCategory = await addCategory({
-        name: payload.custom_category,
-        type: payload.type,
-      })
+      const newCategory =
+        await addCategory({
+          name: payload.custom_category,
+          type: payload.type,
+        })
 
-      categoryId = newCategory.id
+      categoryId =
+        newCategory.id
     }
 
     await addTransaction({
       ...payload,
       category_id: categoryId,
     })
+
+    // ========================================================
+    // NOTIFIKASI TRANSAKSI BERHASIL
+    // ========================================================
+
+    showNotification(
+      'success',
+      payload.type === 'income'
+        ? 'Pemasukan berhasil ditambahkan 🎉'
+        : 'Pengeluaran berhasil ditambahkan 💸',
+      payload.type === 'income'
+        ? 'Pemasukan berhasil disimpan ke MoneyTrack.'
+        : 'Pengeluaran berhasil disimpan ke MoneyTrack.'
+    )
   }
 
   // ============================================================
@@ -222,12 +299,25 @@ export default function Dashboard() {
     <AppShell>
 
       {/* ======================================================
+          NOTIFICATION
+      ====================================================== */}
+
+      <Notification
+        show={notification.show}
+        type={notification.type}
+        title={notification.title}
+        message={notification.message}
+        onClose={closeNotification}
+      />
+
+      {/* ======================================================
           HEADER
       ====================================================== */}
 
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
 
         <div>
+
           <p className="text-sm text-ink-soft mb-1">
             Halo, {displayName} 👋
           </p>
@@ -239,6 +329,7 @@ export default function Dashboard() {
           <p className="text-sm text-ink-soft mt-1">
             Pantau kondisi keuanganmu dengan mudah.
           </p>
+
         </div>
 
         {/* TOMBOL AKSI */}
@@ -278,6 +369,7 @@ export default function Dashboard() {
           </button>
 
         </div>
+
       </div>
 
       {/* ======================================================
@@ -297,6 +389,7 @@ export default function Dashboard() {
       <div className="inline-flex rounded-full bg-paper-card border border-paper-line p-1 mb-5">
 
         {PERIODS.map((p) => (
+
           <button
             key={p.key}
             type="button"
@@ -311,6 +404,7 @@ export default function Dashboard() {
           >
             {p.label}
           </button>
+
         ))}
 
       </div>
@@ -355,7 +449,9 @@ export default function Dashboard() {
           <div className="flex items-center gap-3">
 
             <div className="h-10 w-10 rounded-xl bg-paper flex items-center justify-center">
+
               <Receipt className="h-5 w-5 text-ink-soft" />
+
             </div>
 
             <div>
