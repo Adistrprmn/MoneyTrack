@@ -13,6 +13,7 @@ import Transactions from './pages/Transactions'
 import TransactionTypePage from './pages/TransactionTypePage'
 import Statistics from './pages/Statistics'
 import Profile from './pages/Profile'
+import Calendar from './pages/Calendar'
 
 export default function App() {
   return (
@@ -78,6 +79,11 @@ export default function App() {
               }
             />
 
+            <Route
+              path="/kalender"
+              element={<Calendar />}
+            />
+            
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
 
